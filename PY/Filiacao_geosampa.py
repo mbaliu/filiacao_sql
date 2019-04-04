@@ -1,6 +1,6 @@
 #-*-coding: utf8-*-
 
-import bs4
+#import bs4
 from selenium import webdriver
 #import pandas as pd
 
@@ -9,12 +9,12 @@ from selenium import webdriver
 def load_chrome():
 	global driver
 	driver = webdriver.Chrome(r'..\\chromedriver.exe')
-	#driver2 = webdriver.Ie(r'..\\IEDriverServer.exe')
+	#driver = webdriver.Chrome(r'C:\Users\x417028\Desktop\Arq\chromedriver.exe')
 	
 
 
 # Carrega a página desejada (Geo Sampa)
-def load_page(site=''):
+def load_page(site='prodam'):
 	# Escolha entre o site da prodam ou o do cidadão
 	if site == 'prodam':
 		site = 'http://mapas.geosampa.prodam/PaginasPublicas/_SBC.aspx'
@@ -25,15 +25,19 @@ def load_page(site=''):
 	driver.get(site)
 
 def botao_pesquisar():
+	#Remove a janela de boas-vindas
+	driver.find_element_by_xpath("//div[@class='close']").click()
+	
 	# Clica no botão PESQUISAR
-	driver.find_element_by_xpath("//*[@class='ctlBtnPesquisaLogradouroItemInactive olButton']")
+	driver.find_element_by_xpath("//*[@class='ctlBtnPesquisaLogradouroItemInactive olButton']").click()
 	
 	# Seleciona a ABA desejada - Integração
 	aba = 'IPTU'
-	driver.find_element_by_xpath("//area[@alt='{}']".format(aba))
+	aba = 'Integração'
+	driver.find_element_by_xpath("//area[@alt='{}']".format(aba)).click()
 
 	# Seleciona a OPÇÃO desejada - filiação
-	opcao = 'Filiação'
+	opcao = 'Filiação de Lotes'
 	driver.find_element_by_xpath("//select[@id='cboSerieIntegracao']/option[text()='{}']".format(opcao)).click()
 
 	'''
@@ -42,7 +46,7 @@ def botao_pesquisar():
 	"//div[@id='OpenLayers_Control_Panel_535'][@title='Pesquisar']"
 	'''
 
-def set_input(sql='0001112222'):
+def set_input(sql='0011112222'):
 	# Completa com o SQL
 	
 
