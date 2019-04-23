@@ -85,6 +85,9 @@ def get_data():
 		pass
 	
 	# Identifica os dados de PAI
+	####### id='gbox_T_02824' não funciona - talvez class='ui-jqgrid-btable'
+	#//td[@id='gridDadosIntegracaoB']//table[@class="ui-jqgrid-btable"] PAI
+	#//td[@id='gridDadosIntegracaoC']//table[@class="ui-jqgrid-btable"] FILHO
 	element = driver.find_element_by_xpath("//div[@id='gbox_T_02824']") #funciona??? Verifica se existe a tabela de pai
 	if element:
 		# TABELA DE PAI
